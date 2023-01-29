@@ -1,0 +1,48 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: actuator-client-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  session:
+    store-type: jdbc
+    timeout: 900
+    jdbc:
+      initialize-schema=: always
+
+management:
+  server:
+    port: 9000
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+      cors:
+        allowed-origins: http://192.168.1.12/actuator
+        allowed-methods: GET,POST
+  endpoint:
+    health:
+      enabled: true
+      how-details: always
+    loggers:
+      enabled: true
+
+logging:
+  level:
+    root: INFO
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+#management.endpoints.web.cors.allowed-origins=https://example.com
+#management.endpoints.web.cors.allowed-methods=GET,POST
+#management.endpoint.beans.cache.time-to-live=20s
+#management.endpoint.health.show-details=always

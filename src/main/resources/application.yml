@@ -1,0 +1,25 @@
+#server.port=8094
+spring:
+  application:
+    name: spring-boot-admin-sample-actuator
+
+management:
+  server:
+    port: 9000
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+  endpoint:
+    health:
+      enabled: true
+      how-details: always
+    loggers:
+      enabled: true
+#management.endpoints.web.cors.allowed-origins=https://example.com
+#management.endpoints.web.cors.allowed-methods=GET,POST
+#management.endpoint.beans.cache.time-to-live=20s
+#management.endpoint.health.show-details=always
